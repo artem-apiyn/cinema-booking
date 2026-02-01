@@ -8,7 +8,15 @@ const createTestComponent = (booking: Booking, settings: Settings | null) => {
   return defineComponent({
     setup() {
       const timer = useBookingTimer(booking, settings)
-      return { ...timer }
+      return {
+        remaining: timer.remaining,
+        formatted: timer.formatted,
+        isExpired: timer.isExpired,
+        isCritical: timer.isCritical,
+        start: timer.start,
+        stop: timer.stop,
+        reset: timer.reset
+      }
     },
     template: '<div></div>'
   })
@@ -43,8 +51,8 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, settings)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.isExpired.value).toBe(true)
-    expect(wrapper.vm.formatted.value).toBe('00:00')
+    expect(wrapper.vm.isExpired).toBe(true)
+    expect(wrapper.vm.formatted).toBe('00:00')
   })
 
   it('returns expired state when settings are null', () => {
@@ -53,8 +61,8 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, null)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.isExpired.value).toBe(true)
-    expect(wrapper.vm.formatted.value).toBe('00:00')
+    expect(wrapper.vm.isExpired).toBe(true)
+    expect(wrapper.vm.formatted).toBe('00:00')
   })
 
   it('calculates remaining time correctly', () => {
@@ -65,8 +73,8 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, settings)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.remaining.value).toBe(200)
-    expect(wrapper.vm.formatted.value).toBe('03:20')
+    expect(wrapper.vm.remaining).toBe(200)
+    expect(wrapper.vm.formatted).toBe('03:20')
   })
 
   it('shows critical state when less than 60 seconds remaining', () => {
@@ -77,8 +85,8 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, settings)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.remaining.value).toBe(50)
-    expect(wrapper.vm.isCritical.value).toBe(true)
+    expect(wrapper.vm.remaining).toBe(50)
+    expect(wrapper.vm.isCritical).toBe(true)
   })
 
   it('does not show critical state when more than 60 seconds remaining', () => {
@@ -89,8 +97,8 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, settings)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.remaining.value).toBe(200)
-    expect(wrapper.vm.isCritical.value).toBe(false)
+    expect(wrapper.vm.remaining).toBe(200)
+    expect(wrapper.vm.isCritical).toBe(false)
   })
 
   it('returns zero when time has expired', () => {
@@ -101,9 +109,9 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, settings)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.remaining.value).toBe(0)
-    expect(wrapper.vm.isExpired.value).toBe(true)
-    expect(wrapper.vm.formatted.value).toBe('00:00')
+    expect(wrapper.vm.remaining).toBe(0)
+    expect(wrapper.vm.isExpired).toBe(true)
+    expect(wrapper.vm.formatted).toBe('00:00')
   })
 
   it('updates remaining time over time', async () => {
@@ -114,12 +122,14 @@ describe('useBookingTimer', () => {
     const TestComponent = createTestComponent(booking, settings)
     const wrapper = mount(TestComponent)
     
-    expect(wrapper.vm.remaining.value).toBe(120)
+    // At 12:00:00, booked at 11:58:00 = 120 seconds elapsed, 300 - 120 = 180 remaining
+    expect(wrapper.vm.remaining).toBe(180)
     
     vi.advanceTimersByTime(10000)
     await nextTick()
     await nextTick()
     
-    expect(wrapper.vm.remaining.value).toBe(110)
+    // After 10 more seconds: 120 + 10 = 130 elapsed, 300 - 130 = 170 remaining
+    expect(wrapper.vm.remaining).toBe(170)
   })
 })

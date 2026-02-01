@@ -1,5 +1,5 @@
 import { vi } from 'vitest'
-import { ref, computed } from 'vue'
+import { ref, computed, readonly as vueReadonly } from 'vue'
 
 global.defineNuxtPlugin = vi.fn()
 global.useRuntimeConfig = vi.fn(() => ({
@@ -16,7 +16,8 @@ global.useState = vi.fn((key, init) => {
   const state = ref(init ? init() : null)
   return state
 })
-global.readonly = vi.fn((val) => val)
+// Use the real Vue readonly instead of mocking it
+global.readonly = vueReadonly
 
 global.useAuthStore = vi.fn(() => ({
   user: ref(null),
