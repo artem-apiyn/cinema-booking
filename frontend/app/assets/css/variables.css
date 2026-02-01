@@ -1,0 +1,5 @@
+:root {
+  --color-bg-primary: #0F172A;  --color-bg-secondary: #1E293B;  --color-bg-elevated: #334155;   
+  --color-accent-primary: #E11D48;  --color-accent-hover: #F43F5E;    --color-accent-light: #FB7185;    
+  --color-text-primary: #F8FAFC;    --color-text-secondary: #94A3B8;  --color-text-muted: #64748B;      
+  --color-warning: #F59E0B;         --color-success: #22C55E;         --color-error: #DC2626;           --color-disabled: #334155;      }

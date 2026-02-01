@@ -1,0 +1,48 @@
+{
+  "name": "cinema-booking-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:watch": "vitest --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "@heroicons/vue": "^2.1.1",
+    "@pinia/nuxt": "^0.5.1",
+    "@vee-validate/nuxt": "^4.12.4",
+    "@vee-validate/zod": "^4.12.4",
+    "nuxt": "^3.13.0",
+    "pinia": "^2.1.7",
+    "vee-validate": "^4.12.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.13.0",
+    "@nuxt/eslint-config": "^1.13.0",
+    "@nuxt/test-utils": "^3.13.0",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@types/node": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "@vitest/coverage-v8": "^3.2.0",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.39.2",
+    "eslint-plugin-vue": "^10.7.0",
+    "jsdom": "^27.4.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vitest": "^3.2.0",
+    "vue-tsc": "^2.1.10"
+  }
+}

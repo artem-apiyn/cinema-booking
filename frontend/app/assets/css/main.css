@@ -1,0 +1,51 @@
+@import './variables.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 8px rgba(225, 29, 72, 0.4); 
+    }
+    50% { 
+      box-shadow: 0 0 16px rgba(225, 29, 72, 0.8); 
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+
+  .shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(
+      to right,
+      var(--color-bg-secondary) 4%,
+      var(--color-bg-elevated) 25%,
+      var(--color-bg-secondary) 36%
+    );
+    background-size: 1000px 100%;
+  }
+}
