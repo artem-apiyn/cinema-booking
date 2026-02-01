@@ -1,6 +1,6 @@
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 
-const config = createConfigForNuxt({
+export default createConfigForNuxt({
   rules: {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
@@ -22,13 +22,3 @@ const config = createConfigForNuxt({
     'vitest.config.ts',
   ],
 })
-
-const configs = Array.isArray(config) ? config : [config]
-configs.forEach((c) => {
-  if (c && typeof c === 'object' && 'rules' in c) {
-    c.rules = c.rules || {}
-    c.rules['vue/multi-word-component-names'] = 'off'
-  }
-})
-
-export default Array.isArray(config) ? config : config

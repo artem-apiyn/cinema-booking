@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="w-full">
     <label v-if="label" :for="inputId" class="block text-sm font-medium text-white-mist mb-2">

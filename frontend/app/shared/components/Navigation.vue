@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <nav class="flex items-center justify-between w-full">
     <NuxtLink to="/movies" class="text-2xl font-bold text-white-mist hover:text-cinema-rose transition-colors">
